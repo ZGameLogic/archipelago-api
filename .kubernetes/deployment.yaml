@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test
+  name: archipelago-api
   labels:
-    app: test
+    app: archipelago-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test
+      app: archipelago-api
   template:
     metadata:
-      name: test
+      name: archipelago-api
       labels:
-        app: test
+        app: archipelago-api
     spec:
       containers:
-        - name: test
-          image: ghcr.io/zgamelogic/test:master
+        - name: archipelago-api
+          image: ghcr.io/zgamelogic/archipelago-api:master
           imagePullPolicy: Always
           volumeMounts:
             - name: keystore-volume
