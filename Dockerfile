@@ -6,14 +6,14 @@ LABEL authors="Ben Shabowski"
 FROM arm64v8/openjdk:21-jdk-buster
 
 # Install Python, pip, and JEP's dependencies
-RUN apt-get update
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
-RUN apt-get install -y python3-dev
-RUN apt-get install -y build-essential
-RUN apt-get install -y cmake
-RUN apt-get install -y libpython3-dev
-RUN rm -rf /var/lib/apt/lists/*
+RUN sudo apt-get update
+RUN sudo apt-get install -y python3
+RUN sudo apt-get install -y python3-pip
+RUN sudo apt-get install -y python3-dev
+RUN sudo apt-get install -y build-essential
+RUN sudo apt-get install -y cmake
+RUN sudo apt-get install -y libpython3-dev
+RUN sudo rm -rf /var/lib/apt/lists/*
 
 # Install JEP via pip (this will include native dependencies)
 RUN pip3 install jep
