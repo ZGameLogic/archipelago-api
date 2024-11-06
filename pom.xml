@@ -41,12 +41,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>black.ninia</groupId>
-            <artifactId>jep</artifactId>
-            <version>4.0.0</version>
-        </dependency>
     </dependencies>
 
     <build>
