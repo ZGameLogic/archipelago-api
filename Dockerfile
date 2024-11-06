@@ -1,19 +1,19 @@
 # Use ubuntu:latest as the base image
-FROM ubuntu:latest
+FROM arm64v8/ubuntu:latest
 LABEL authors="Ben Shabowski"
 
 # Switch to an arm64-based OpenJDK image (specific to your platform)
-#FROM arm64v8/openjdk:21-jdk-buster
+FROM arm64v8/openjdk:21-jdk-buster
 
 # Install Python, pip, and JEP's dependencies
-#RUN apt-get update
+RUN apt update
 RUN apt install -y python3
-#RUN apt-get install -y python3-pip
-#RUN apt-get install -y python3-dev
-#RUN apt-get install -y build-essential
-#RUN apt-get install -y cmake
-#RUN apt-get install -y libpython3-dev
-#RUN rm -rf /var/lib/apt/lists/*
+RUN apt install -y python3-pip
+RUN apt install -y python3-dev
+RUN apt install -y build-essential
+RUN apt install -y cmake
+RUN apt install -y libpython3-dev
+RUN rm -rf /var/lib/apt/lists/*
 
 # Install JEP via pip (this will include native dependencies)
 RUN pip3 install jep
