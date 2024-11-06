@@ -20,6 +20,10 @@ jobs:
           distribution: 'temurin'
       - name: build project
         run: mvn clean install
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          image: 'arm64'
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag tsa:$(date +%s)
       - name: Log in to the Container registry
