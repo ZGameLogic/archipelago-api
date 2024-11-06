@@ -3,7 +3,7 @@ FROM arm64v8/ubuntu:latest
 LABEL authors="Ben Shabowski"
 
 # Switch to an arm64-based OpenJDK image (specific to your platform)
-#FROM arm64v8/openjdk:21-jdk-buster
+FROM arm64v8/openjdk:21-jdk-buster
 
 # Install Python, pip, and JEP's dependencies
 RUN apt update
