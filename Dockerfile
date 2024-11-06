@@ -6,7 +6,7 @@ LABEL authors="Ben Shabowski"
 FROM arm64v8/openjdk:21-jdk-buster
 
 # Install Python, pip, and JEP's dependencies
-RUN #apt-get update
+#RUN apt-get update
 RUN apt-get install -y python3
 #RUN apt-get install -y python3-pip
 #RUN apt-get install -y python3-dev
