@@ -19,14 +19,6 @@ spec:
         - name: archipelago-api
           image: ghcr.io/zgamelogic/archipelago-api:master
           imagePullPolicy: Always
-          volumeMounts:
-            - name: keystore-volume
-              mountPath: "/etc/keystore"
-              readOnly: true
-      volumes:
-        - name: keystore-volume
-          secret:
-            secretName: ssl-keystore-secret
       restartPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret

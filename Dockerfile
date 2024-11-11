@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM arm64v8/python:3.9
 LABEL authors="Ben Shabowski"
 
 RUN git clone https://github.com/ArchipelagoMW/Archipelago.git

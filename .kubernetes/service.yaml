@@ -7,8 +7,8 @@ spec:
     app: archipelago-api
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
-      nodePort: 30090
+      port: 80
+      targetPort: 80
+      nodePort: 30100
   type: NodePort
   
