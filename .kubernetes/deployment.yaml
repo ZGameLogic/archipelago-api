@@ -19,6 +19,13 @@ spec:
         - name: archipelago-api
           image: ghcr.io/zgamelogic/archipelago-api:master
           imagePullPolicy: Always
+          livenessProbe:
+            exec:
+              command:
+                - ls
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            failureThreshold: 5
       restartPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret

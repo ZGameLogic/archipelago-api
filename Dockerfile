@@ -1,9 +1,11 @@
-FROM python:3.9
+FROM python:3.10
 LABEL authors="Ben Shabowski"
 
 RUN git clone https://github.com/ArchipelagoMW/Archipelago.git
-RUN pip3 install --no-cache-dir pexpect flask flask_caching flask_compress pony bokeh
+WORKDIR Archipelago
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
 EXPOSE 80
 
-CMD python3 -c "import pexpect; child = pexpect.spawn('python3 Archipelago/WebHost.py'); child.sendline(''); child.interact()"
+CMD python3 WebHost.py
