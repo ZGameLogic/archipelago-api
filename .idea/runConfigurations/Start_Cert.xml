@@ -2,7 +2,7 @@
   <configuration default="false" name="Start Cert" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="cert" />
     <module name="archipelago-api" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="com.zgamelogic.application.App" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.zgamelogic.Application" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="com.zgamelogic.application.*" />

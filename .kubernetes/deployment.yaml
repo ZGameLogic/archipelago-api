@@ -20,17 +20,30 @@ spec:
           image: ghcr.io/zgamelogic/archipelago-api:master
           imagePullPolicy: Always
           volumeMounts:
-            - name: archipelago-output-volume
-              mountPath: "/Archipelago/output"
+            - name: keystore-volume
+              mountPath: "/etc/keystore"
               readOnly: true
-
+          env:
+            - name: TZ
+              value: "America/Chicago"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8085
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8085
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 30
       volumes:
-        - name: archipelago-output-volume
-          hostPath:
-            path: /home/Ben/front-end/archipelago/output
-            type: Directory
+        - name: keystore-volume
+          secret:
+            secretName: ssl-keystore-secret
       restartPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret
-
-      
