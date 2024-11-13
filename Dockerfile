@@ -1,15 +1,7 @@
 FROM debian:bookworm
 LABEL authors="Ben Shabowski"
 
-RUN apt-get update && apt install -y wget git build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python3-pip
-
-# Install Java
-RUN apt-get install -y default-jdk
-
-# Install Python
-RUN wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
-RUN tar -xvf Python-3.10.0.tgz
-RUN cd Python-3.10.0 && ./configure --enable-optimizations && make altinstall
+RUN apt-get update && apt install -y wget git build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python3 python3-pip default-jdk
 
 # Get Archipelago source in here
 RUN git clone https://github.com/ArchipelagoMW/Archipelago.git
