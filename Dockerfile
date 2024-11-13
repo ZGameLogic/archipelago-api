@@ -1,7 +1,7 @@
 FROM debian:bookworm
 LABEL authors="Ben Shabowski"
 
-RUN apt-get update && apt install -y wget git build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python3 python3-pip default-jdk
+RUN apt-get update && apt install -y wget git python3 python3-pip default-jdk
 
 # Get Archipelago source in here
 RUN git clone https://github.com/ArchipelagoMW/Archipelago.git
