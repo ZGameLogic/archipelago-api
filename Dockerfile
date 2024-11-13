@@ -1,23 +1,26 @@
-FROM arm64v8/openjdk:21-jdk-bullseye
+FROM debian:bookworm
 LABEL authors="Ben Shabowski"
 
-RUN apt-get update
-RUN apt-get install -y wget build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
-    libnss3-dev libssl-dev libreadline-dev libffi-dev curl libbz2-dev && \
-    wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz && \
-    tar -xf Python-3.10.0.tgz && \
-    cd Python-3.10.0 && \
-    ./configure --enable-optimizations && \
-    make -j $(nproc) && \
-    make altinstall && \
-    cd .. && rm -rf Python-3.10.0*
+RUN apt-get update && apt install -y wget git build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev python3-pip
 
+# Install Java
+RUN wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
+RUN dpkg -i jdk-21_linux-x64_bin.deb
+
+# Install Python
+RUN wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz
+RUN tar -xvf Python-3.10.0.tgz
+RUN cd Python-3.10.0 && ./configure --enable-optimizations && make altinstall
+
+# Get Archipelago source in here
 RUN git clone https://github.com/ArchipelagoMW/Archipelago.git
+# Get the spring API in here
 COPY /target/archipelago-api-1.0.0.jar /Archipelago/archipelago-api-1.0.0.jar
 
+# Install python requirements for the Archipelago
 WORKDIR Archipelago
 COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip3 install --break-system-packages -r requirements.txt
 
 EXPOSE 8080
 
