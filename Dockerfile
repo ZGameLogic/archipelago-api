@@ -1,11 +1,16 @@
-FROM python:3.10
+FROM arm64v8/openjdk:21-jdk-bullseye
 LABEL authors="Ben Shabowski"
 
-RUN apt-get update && apt install -y alien dpkg-dev debhelper build-essential
-
-RUN wget https://download.oracle.com/java/21/latest/jdk-21_linux-aarch64_bin.rpm
-RUN alien jdk-21_linux-aarch64_bin.rpm
-RUN dpkg -i jdk-21_linux-aarch64_bin.deb
+RUN apt-get update
+RUN apt-get install -y wget build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
+    libnss3-dev libssl-dev libreadline-dev libffi-dev curl libbz2-dev && \
+    wget https://www.python.org/ftp/python/3.10.0/Python-3.10.0.tgz && \
+    tar -xf Python-3.10.0.tgz && \
+    cd Python-3.10.0 && \
+    ./configure --enable-optimizations && \
+    make -j $(nproc) && \
+    make altinstall && \
+    cd .. && rm -rf Python-3.10.0*
 
 RUN git clone https://github.com/ArchipelagoMW/Archipelago.git
 COPY /target/archipelago-api-1.0.0.jar /Archipelago/archipelago-api-1.0.0.jar
